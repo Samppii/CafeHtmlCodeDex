@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @font-face {
+            font-family: 'Minecraft';
+            src: url('fonts/minecraft.ttf') format('ttf'); /* Keeps the font type as is */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Minecraft', sans-serif; /* Applies Minecraft font to body */
+            text-align: center; /* Center all text in the body */
+            background-color: #1e0315d1;
+        }
+
+        header {
+            margin: 0; /* Removes default margin */
+            padding: 0; /* Removes default padding */
+        }
+        p i {
+            font-size: 1rem;
+            color: #5e0c0c;
+        }
+        .welcome{
+            background-color: bisque;
+            border-radius: 15px;
+            padding: 1px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin: 20px auto;
+            max-width: 780px; 
+        }
+        .welcome h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            transition: color 0.5s, text-shadow 0.5s;
+            color: #5e0c0c;
+        }
+        .welcome h1:hover {
+            color: #281208ad;
+            text-shadow: 2px 2px 6px rgba(78, 13, 13, 0.7);
+        }
+        .menu-section{
+            background-color: bisque;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            margin: 20px auto;
+            
+        }
+        .menu-section h2 {
+            font-size: 2.0rem;
+            font-weight: bold;
+            transition: color 0.5s, text-shadow 0.5s;
+            color: #5e0c0c;
+        }
+        .menu-section h2:hover {
+            color: #281208ad;
+            text-shadow: 2px 2px 6px rgba(78, 13, 13, 0.7);
+        }
+        
+        .menu-section p {
+           color : #5e0c0c;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto; /* Centers the container */
+            padding: 0; /* Ensures no padding affects alignment */
+        }
+
+        #header-img {
+            width: 100%;
+            height: auto;
+        }
+
+        .header-content{
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .audio-controls {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            padding: 0%;
+            z-index: 10;
+            
+        }
+        .audio-controls img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        audio{
+            outline: none;
+        }
+
+        main {
+            margin: 20px auto; /* Centers the main content with margins */
+            padding: 0 10px; /* Adds padding to match the container's edge */
+            max-width: 800px; /* Matches the container's width */
+            box-sizing: border-box; /* Ensures padding is included in the width */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Minecraft', sans-serif; 
+            margin: 20px 0; 
+        }
+        img {
+            width: 100%;
+            height: auto;
+            max-width: 780px; 
+        }
+        
+        .itemimg {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            height: 120px;
+            justify-content: space-between;
+        }
+        .itemimg img {
+            width: 120px;
+            height: auto;
+        }
+        .itemimg p {
+            font-size: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            justify-content: center;
+        }
+        .itemimg p:first-of-type {
+            text-align: center;
+        }
+        .itemimg p:last-of-type {
+            text-align: right;
+            width: 100px;
+        }
+
+        .order-section {
+            background-color: #f5e6c8;
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+            width: 95%; 
+            max-width: 780px; 
+            margin: 20px auto; 
+        }
+
+        .order-section label {
+            font-family: 'Minecraft', sans-serif;
+            font-weight: bold;
+            color: #5e0c0c; 
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .order-section input[type="text"],
+        .order-section input[type="email"],
+        .order-section select,
+        .order-section textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #d4a373;
+            border-radius: 5px;
+            background-color: #fdf1e7; /* Soft background for inputs */
+            font-size: 16px;
+            font-family: 'Minecraft', sans-serif;
+            color: #5e0c0c;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            max-width: 100%;
+        }
+
+        .order-section input[type="number"] {
+            width: 50px; /* Narrower field for quantity */
+            padding: 5px;
+            margin-bottom: 15px;
+            border: 2px solid #d4a373;
+            border-radius: 5px;
+            background-color: #fdf1e7;
+            font-size: 16px;
+            font-family: 'Minecraft', sans-serif;
+            color: #5e0c0c;
+        }
+
+        .order-section input[type="submit"] {
+            background-color: #c97a63;
+            color: white;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .order-section input[type="submit"]:hover {
+            background-color: #a85640; /* Darker shade on hover */
+        }
+
+        .order-section h2 {
+            font-size: 1.7rem;
+            font-family: 'Minecraft', sans-serif;
+            color: #5e0c0c;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+            transition: color 0.5s, text-shadow 0.5s;
+            text-decoration: underline;
+        }
+        .order-section h2:hover {
+            color: #281208ad;
+            text-shadow: 2px 2px 6px rgba(78, 13, 13, 0.7);
+        }
+
+        footer{
+            background-color: #462424db;
+            color: #f5e6c8;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-family: 'Minecraft', sans-serif;
+            border-top: 3px solid #c97a63;
+            box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.5);
+            margin-top: 40px;
+            }
+        footer a {
+            color: #f5e6c8;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #c97a63;
+        }
+
+    </style>
+    <title>NekoCafé</title>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <img src="image/nekocafe.gif" alt="NekoCafé" id="header-img">
+            <div class="audio-controls">
+                <img src="image/PlayB.png" alt="Play" id="PlayB" style="display:block; cursor: pointer;">       
+                <img src="image/PauseB.png" alt="Pause" id="PauseB" style="display: none; cursor: pointer;"> <!-- DK WHY MY COMMENTS WERE'NT WORKING BUT, I finally got the play pause button working lol had to look into how the script works and also couldn't fix the play button in the beginning it's supposed to show pause lol but after that it works :3 so I'm good -->
+                <audio id="bg-audio" autoplay loop>
+                    <source src="Assets/CoffeeLofi.mp3" type="audio/mpeg">
+                    <p>If you are reading this, it is because your browser does not support the audio element.</p>
+                </audio>
+            </div>
+        </div>
+        <div class = "welcome">
+        <h1>Welcome to NekoCafé</h1>
+        </div>
+    </header>
+    <main>
+        <div class = "menu-section">
+            <section align = center>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><h2> <u>Menu</u> </h2></a> 
+                <article>
+                    <div class="itemimg">
+                    <img src="image/cheesecake.png" alt="cheesecake" >
+                    <p>Cheesecake <br><i>Get it, it has strawberry in it :3</i></p>
+                    <p>$15.00</p>
+                    </div>
+                </article>
+                <br>
+                <article>
+                    <div class="itemimg">
+                    <img src="image/coffee.gif" alt="Coffee" >
+                    <p>Coffee<br><i>Coffee with cat is the best combo :3</i></p>
+                    <p>$7.00</p>
+                    </div>
+                </article>
+                <br><br>
+                <article>
+                    <div class="itemimg">
+                    <img src="image/croissant.png" alt="Croissant" >
+                    <p>Croissant <br><i>Tastes best with cat? COFFEE! I meant coffee :3</i></p>
+                    <p>$12.00</p>
+                    </div>
+                </article>
+                <br><br>
+            </section>
+        </div>
+        <div class="order-section">
+            <a href="https://www.instagram.com/samip__grg/"><h2>Place Your Order</h2></a> <!-- I will take your order personally :3 -->
+            <br><br>
+            <form>
+                <label for="name">Name:</label><br>
+                <input type="text" id="name" name="name"><br><br>
+                <label for="email">Email:</label><br>
+                <input type="text" id="email" name="email"><br><br>
+                <label for="item">Select an item:</label><br>
+                <select id="item" name="item">
+                    <option value="">Select an item:</option>
+                    <option value="Cheesecake">Cheesecake</option>
+                    <option value="Coffee">Coffee</option>
+                    <option value="Croissant">Croissant</option>
+                </select><br><br>
+                <label for="quantity">Quantity:</label><br>
+                <input type="number" id="quantity" name="quantity" min="1" max="10"><br><br>
+                <label for="comments">Comments:</label><br>
+                <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </main>
+    <script>
+        const audio = document.getElementById('bg-audio'); /* Totally unnecessary rn but I researched some stuff and apparently I can control volume, play/pause button with JS so I did :3 */
+        const playB = document.getElementById('PlayB');
+        const pauseB = document.getElementById('PauseB');
+
+        playB.addEventListener('click', () => {
+            audio.play();
+            playB.style.display = 'none';
+            pauseB.style.display = 'block';
+        });
+
+        pauseB.addEventListener('click', () => {
+            audio.pause();
+            playB.style.display = 'block';
+            pauseB.style.display = 'none';
+        });
+        audio.volume = 0.3; /* Might wanna lower the volume a bit :3 */
+    </script>
+    <footer>
+        <p> With Love and Neko <a href="https://www.codedex.io/@Samppiii">@Samppiii</a></p>
+    </footer>
+</body>
+</html>
